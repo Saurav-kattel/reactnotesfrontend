@@ -76,7 +76,7 @@ export default function Notes() {
   { (done) ? <p className="text-green-500 font-serf  "> success </p> :  " " }
   
   
-  { (error) ? <p className="text-red-500 font-serf  "> Some error occured</p> : " "}
+  { (error) ? <p className="text-red-500 font-serf  "> Some error occured try again!</p> : " "}
 </div>
 </form> < />
 )
