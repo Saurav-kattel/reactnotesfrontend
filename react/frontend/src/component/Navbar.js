@@ -42,12 +42,11 @@ ref.current.classList.add("hidden");
   }
   return(
     <>
- <div className="flex h-[8vh] bg-[whitesmoke] items-center shadow-md justify-between overflow-hidden ">
-
-{ (showAvatar) ? <div> <Avatar name={user.data.name}  size="40"  round = {true} /> </div> : <div> <Avatar name=" "  size="40"  round={true} /> </div>}
+ <div className="flex h-[8vh] bg-primary-blue items-center shadow-md justify-between overflow-hidden ">
 
 
-<h2 className=" bold font-serif text-2xl ">MyNotes </h2>
+
+<h2 className=" bold font-serif text-2xl text-lime-200">MyNotes </h2>
 
 <div onClick={handleClick}  className="text-3xl">
 lets see
@@ -56,6 +55,7 @@ lets see
   { <aside ref={ref} className="absolute right-0  top-0 w-[50vmin] h-[100%] bg-slate-100  rounded-l-md shadow-md transition-all
     duration-100 hidden ">
     
+{ (showAvatar) ? <div> <Avatar name={user.data.name}  size="40"  round = {true} /> </div> : <div> <Avatar name=" "  size="40"  round={true} /> </div>}
   <div className='flex flex-col  w-[50vmin] items-center' >
   <div className="p-2 w-[35vmin] rounded-md "> 
     <span onClick={handleClick} >close </span><h3 className="text-center bold text-2xl font-serif border-b-2 w-[35vmin] "> Navigaton </h3>

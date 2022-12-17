@@ -1,4 +1,4 @@
-import React, {
+  import React, {
   useState
 } from "react"
 
@@ -59,11 +59,11 @@ export default function Notes() {
   }
   return (
     <>
-    <form onSubmit={handleSubmit} className="flex flex-col m-2 p-2 items-center shadow-md h-[70vh] shadow-stone-600 ">
+    <form onSubmit={handleSubmit} className="flex flex-col m-2 p-2 items-center shadow-md h-[70vh] shadow-stone-600 bg-img">
     <div className="border w-[90vw]">
     <label htmlFor="title">Title</label>
     <br />
-    <input type="text" className="border-b-2 border-stone-300 outline-none p-2 border-solid "name="title" value={title} onChange={handleChange} />
+    <input type="text" className="border-b-2 border-stone-300 outline-none p-2 border-solid "name="title bg-none " value={title} onChange={handleChange} />
     <br />
        <label htmlFor="tag">Tag</label>
        <br />

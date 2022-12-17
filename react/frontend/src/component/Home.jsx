@@ -60,11 +60,11 @@ const handleDelete = (id) =>{
 
   return (
 <>
-<div className="text-slate-50  bg-slate-600 h-[100vh] w-[10wvh] block overflow-y-scroll border-solid border-1 border-slate-200 p-2 rounder-sm">
+<div className="text-slate-50  bg-primary-blue h-[100vh] w-[10wvh] block overflow-y-scroll border-solid border-1 border-slate-200 p-2 rounder-sm">
 
 <div className="flex  justify-center">
 <h3 className="p-2  text-2xl font-serif bold  underline linline"> Notes: </h3>
-    <Link to="/notes"><button className="h-[4vh] bg-blue-600 rounded-md text-center p-1 m-2 text-slate-100 "> add Note +</button></Link>
+    <Link to="/notes"><button className="h-[4vh] bg-buttton-blue rounded-md text-center p-1 m-2 text-slate-100 "> add Note +</button></Link>
     </div>
 {
 
