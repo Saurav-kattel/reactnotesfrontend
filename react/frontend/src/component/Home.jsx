@@ -24,9 +24,10 @@ useEffect(()=>{
 
  fetch("https://expressserver-khaki.vercel.app/api/note/getnotes", options).then((response)=>{
    response.json().then((info)=>{
+     if(response.ok){
      setData(info);
      setNote(true)
-   })
+ }  })
  }).catch((err)=>{
    throw new Error("error")
  })

@@ -4,6 +4,7 @@ import {useRef, useState, useEffect} from "react"
 
 export default function Navbar({pathname}){
   const [user ,setUser] = useState({data: {name: " "}});
+  const [showAvatar ,setShowAvatar] = useState(false);
   const ref = useRef();
 const token = localStorage.getItem("token");
  
@@ -22,8 +23,7 @@ const options ={
   let jsonD = await data.json();
   if(data.ok){
   setUser(jsonD);
-  } else {
-setUser({data: {name: " "}})
+  setShowAvatar(true);
   }
  }else {
      setUser({data: {name: " "}})
@@ -42,15 +42,18 @@ ref.current.classList.add("hidden");
   }
   return(
     <>
-    <div className="flex h-[8vh] bg-[whitesmoke] items-center shadow-md justify-between overflow-hidden ">
-<Avatar name={user.data.name}  size="40"  round={true}/>
+ <div className="flex h-[8vh] bg-[whitesmoke] items-center shadow-md justify-between overflow-hidden ">
+
+{ (showAvatar) ? <div> <Avatar name={user.data.name}  size="40"  round = {true} /> </div> : <div> <Avatar name=" "  size="40"  round={true} /> </div>}
+
+
 <h2 className=" bold font-serif text-2xl ">MyNotes </h2>
 
 <div onClick={handleClick}  className="text-3xl">
 lets see
 </div>
 
-{   <aside ref={ref} className="absolute right-0  top-0 w-[50vmin] h-[100%] bg-slate-100  rounded-l-md shadow-md transition-all
+  { <aside ref={ref} className="absolute right-0  top-0 w-[50vmin] h-[100%] bg-slate-100  rounded-l-md shadow-md transition-all
     duration-100 hidden ">
     
   <div className='flex flex-col  w-[50vmin] items-center' >
@@ -67,7 +70,7 @@ lets see
       </div>
     </div>
 </aside> }
- </div>
+ </div> 
     </>
   )
 }
