@@ -1,4 +1,6 @@
 import { useState , useEffect} from "react"
+import { Link} from "react-router-dom"
+ 
 const Home = () =>{
   let notes; 
   const [deleteNote, setDeleteNote] = useState(false)
@@ -10,8 +12,6 @@ const Home = () =>{
  )])
   const token = localStorage.getItem("token");
   
- //;https://expressserver-khaki.vercel.app/api/note/getallnotes
-
 useEffect(()=>{
   const fetchData =()=>{
  const options = {
@@ -20,6 +20,8 @@ useEffect(()=>{
      "auth": token
    }
  }
+ 
+
  fetch("https://expressserver-khaki.vercel.app/api/note/getnotes", options).then((response)=>{
    response.json().then((info)=>{
      setData(info);
@@ -46,6 +48,9 @@ const handleDelete = (id) =>{
       if(response.ok){
         setDeleteNote(true)
       }
+      setTimeout(function() {
+        setDeleteNote(false)
+      },1000);
     })
   }).catch((err)=>{
     setErr (true)
@@ -54,22 +59,32 @@ const handleDelete = (id) =>{
 
   return (
 <>
-<div className="bg-slate-50 h-[100vh] w-full">
-<h3 className="p-2 text-center text-3xl font-serif bold  underline"> Notes: </h3>
+<div className="text-slate-50  bg-slate-600 h-[100vh] w-[10wvh] block overflow-y-scroll border-solid border-1 border-slate-200 p-2 rounder-sm">
+
+<div className="flex  justify-center">
+<h3 className="p-2  text-2xl font-serif bold  underline linline"> Notes: </h3>
+    <Link to="/notes"><button className="h-[4vh] bg-blue-600 rounded-md text-center p-1 m-2 text-slate-100 "> add Note +</button></Link>
+    </div>
 {
+
+    
  (note) ? data.notes.map((elements, index)=>{
-    return <ul key={elements._id}>
+  return  <ul key={elements._id}>
     <li> {elements.title}</li>
     <li> {elements.tag} </li>
     <li> {elements.description} </li>
-    <button onClick={()=>{handleDelete(elements._id)}}> delete</button>
+      <Link  to="/edit" state={{elements}}><button className="h-[4vh] bg-blue-600 rounded-md text-center p-1 m-2 text-slate-100 "> edit</button></Link>
+
+    <button className="h-[4vh] bg-red-600 rounded-md text-center p-1 m-2 text-slate-100 " onClick={()=>{handleDelete(elements._id)}}> delete</button>
     </ul> 
+
   })
- : <p> loading</p>
+ : "<Loading....../>"
 }
-    {(deleteNote && !err)? <p className="font-sans text-green-500 ">successfully deleteted</p>: " "
-    }
-    {(err) ? "error occurred try again" : " "}
+      {(deleteNote && !err) ? <p className="font-sans text-green-500 absolute top-13 left-20">successfully deleteted</p> : " "}
+   
+  {  (err) ? "error occurred try again" : " "}
+
 </div>
 </>
     )

@@ -2,22 +2,36 @@ import React, {
   useState
 } from "react"
 
-import {Link } from "react-router-dom"
+import {
+  Link,
+  useLocation
+} from "react-router-dom"
 
-export default function Notes() {
+export default function Edit() {
+  const location = useLocation();
+
+
+  const states = {
+    titles: location.state.elements.title,
+    tags: location.state.elements.tag,
+    descriptions: location.state.elements.description,
+    _id: location.state.elements._id
+  }
+
   const token = localStorage.getItem("token")
   const [title,
-    setTitle] = useState("");
+    setTitle] = useState(states.titles);
   const [tag,
-    setTag] = useState("");
+    setTag] = useState(states.tags)
   const [done,
     setDone] = useState(false);
-
   const [error,
     setError] = useState(false);
-    
+
+
   const [description,
-    setDescription] = useState("");
+    setDescription] = useState(states.descriptions);
+
 
   const handleChange = (e) => {
     if (e.target.name === "tag") {
@@ -31,7 +45,7 @@ export default function Notes() {
   const handleSubmit = (e) => {
 
     const options = {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         "auth": token
@@ -41,17 +55,13 @@ export default function Notes() {
       })
     }
     if (token) {
-      fetch("https://expressserver-khaki.vercel.app/api/note/save", options).then((response)=> {
+      fetch("https://expressserver-khaki.vercel.app/api/note/update/"+states._id, options).then((response)=> {
         response.json().then((data)=> {
           if (response.ok) {
             setDone(true)
-            setTag("")
-            setTitle("")
-            setDescription("")
           }
         })
       }).catch(err=> {
-        console.log(err)
         setError(true)
       })
     }
@@ -73,16 +83,16 @@ export default function Notes() {
        <br />
  <textarea name="description" className="outline-none h-[30vh] w-[60vw] resizeNone resize-none border-b-2 border-solid border-stone-300" value={description} onChange={handleChange}></textarea><br />
    <button>Save</button>
-   
-  { (done) ? <p className="text-green-500 font-serf  "> success </p> :  " " }
-  
-  
-  { (error) ? <p className="text-red-500 font-serf  "> Some error occured try again!</p> : " "}
-    <br/>
+  { (done) ? <p className="text-green-500 font-serf  ">
+ success
+</p>: " " }
+  { (error) ? <p className="text-red-500 font-serf  ">
+ Some error occured try again!
+</p>: " "}
+    <br />
 
 </div>
-    <Link to="/"><button className="p-1 h-[4vh] text-center bg-blue-500 rounded-md text-slate-50 font-sans" >view notes-</button></Link>
-</form> 
-< />
+    <Link to="/"><button className="p-1 h-[4vh] text-center bg-blue-500 rounded-md text-slate-50 font-sans">view notes-</button></Link>
+</form> < />
 )
 }
