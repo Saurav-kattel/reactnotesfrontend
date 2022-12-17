@@ -27,7 +27,7 @@ useEffect(()=>{
      if(response.ok){
      setData(info);
      setNote(true)
- }  })
+ }})
  }).catch((err)=>{
    throw new Error("error")
  })
