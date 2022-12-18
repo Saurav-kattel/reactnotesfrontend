@@ -59,11 +59,12 @@ export default function Notes() {
   }
   return (
     <>
-    <form onSubmit={handleSubmit} className="flex flex-col m-2 p-2 items-center shadow-md h-[70vh] shadow-stone-600 bg-img">
-    <div className="border w-[90vw]">
-    <label htmlFor="title">Title</label>
-    <br />
-    <input type="text" className="border-b-2 border-stone-300 outline-none p-2 border-solid "name="title bg-none " value={title} onChange={handleChange} />
+    <form onSubmit={handleSubmit} className="flex flex-col m-2 p-2 items-center justify-center
+    shadow-md h-[70vh] shadow-stone-600 
+bg-img">
+    <div className="border w-[90vw] h-[70vh]   bg-opacity-10 ">
+    <label htmlFor="title" className="block text-2xl m-1 text-yellow-700 ">Title</label>
+<input type="text" className=" rounded-lg bg-optional-blue m-1 outline-none p-1 bg-none border-solid "name="title" value={title} onChange={handleChange} />
     <br />
        <label htmlFor="tag">Tag</label>
        <br />
@@ -81,7 +82,7 @@ export default function Notes() {
     <br/>
 
 </div>
-    <Link to="/"><button className="p-1 h-[4vh] text-center bg-blue-500 rounded-md text-slate-50 font-sans" >view notes-</button></Link>
+    <Link to="/"><button className="p-1 h-[4vh] text-center bg-buttton-blue rounded-md text-slate-50 font-sans" >view notes-</button></Link>
 </form> 
 < />
 )
