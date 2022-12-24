@@ -56,7 +56,7 @@ ref.current.classList.add("hidden");
 </div>
 
   { <aside ref={ref} className="absolute right-0  top-0 w-[50vmin] h-[100%] bg-lime-600  rounded-l-md shadow-md transition-all
-    duration-100 hidden ">
+    duration-100 hidden z-40">
     
 
 

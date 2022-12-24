@@ -4,7 +4,8 @@ import { Link} from "react-router-dom"
   Tags,
   Plus,
   PencilSquare,
-  Trash3
+  Trash3,
+  ArrowRepeat
 } from 'react-bootstrap-icons';
 const Home = () =>{
   let notes; 
@@ -90,9 +91,9 @@ const handleDelete = (id) =>{
     </ul> 
 
   })
- : "<Loading....../>"
+ :  <ArrowRepeat className="flex justify-center absolute items-center absolute text-4xl  z-40 animate-spin w-full right-1 text-slate-700" /> 
 }
-      {(deleteNote && !err) ? <p className="font-sans text-green-500 absolute top-13 left-20">successfully deleteted</p> : " "}
+      {(deleteNote && !err) ? <p className="font-sans text-green-500  absolute top-13 left-20">successfully deleteted</p> : " "}
    
   {  (err) ? "error occurred try again" : " "}
     </div>
